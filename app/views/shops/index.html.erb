@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Shops</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12">
+    <ul class="list-unstyled">
+      <% @shops.each do |shop| %>
+        <% number_of_listings = Listing.where(shop_id: shop.id).count %>
+        <li><%= link_to shop.name, "/shops/#{shop.id}" %> (<%= number_of_listings %> listings)</li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

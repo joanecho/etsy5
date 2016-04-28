@@ -1,0 +1,35 @@
+<div class="page-header">
+  <p class="pull-right">
+    <%= link_to "Edit This Listing", "/listings/#{@listing.id}/edit", class: "btn btn-primary" %>
+    <%= link_to "Delete This Listing", "/listings/#{@listing.id}", method: :delete, class: "btn btn-primary" %>
+  </p>
+  <h1>
+    <%= @listing.title %>
+    <% shop = Shop.find_by(id: @listing.shop_id) %>
+    <small>sold by <%= link_to shop.name, "/shops/#{shop.id}" %></small>
+  </h1>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-3 text-center">
+    <div class="img-holder">
+        <img width="340" src="<%= @listing.image_url %>" class="img-responsive">
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-sm-offset-1">
+    <table class="table table-bordered table-striped">
+      <tr><td>Title</td><td><%= @listing.title %></td></tr>
+      <tr><td>Price</td><td><%= number_to_currency(@listing.price / 100.0) %></td></tr>
+      <tr><td>Favorites</td><td><%= @listing.num_favorites %></td></tr>
+    </table>
+
+    <h3>Other Items From This Seller</h3>
+    <% Listing.where(shop_id: @listing.shop_id).each do |listing| %>
+      <% if listing.id != @listing.id %>
+        <a href="/listings/<%= listing.id %>"><img src="<%= listing.image_url %>" width="80px"></a>
+      <% end %>
+    <% end %>
+  </div>
+</div>

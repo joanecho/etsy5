@@ -1,0 +1,16 @@
+<h1>Edit Listing</h1>
+
+<div class="row">
+  <div class="col-sm-4">
+    <%= bootstrap_form_for @listing do |form| %>
+
+      <%= form.text_field :title %>
+      <%= form.collection_select :shop_id, Shop.all.order('name'), :id, :name %>
+      <%= form.text_field :image_url, label: "Image URL" %>
+      <%= form.text_field :price, value: (@listing.price / 100.0) %>
+
+      <%= form.submit %>
+
+    <% end %>
+  </div>
+</div>

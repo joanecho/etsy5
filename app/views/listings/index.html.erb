@@ -1,0 +1,21 @@
+<div class="page-header">
+  <p class="pull-right">
+    <%= link_to "Add New Listing", "/listings/new", class: "btn btn-primary" %>
+  </p>
+  <h1>Shop directly from people around the world.</h1>
+</div>
+
+<div class="row">
+
+  <% @listings.each do |listing| %>
+    <div class="col-sm-3 text-center">
+      <div class="img-holder">
+        <a href="/listings/<%= listing.id %>">
+          <img width="340" src="<%= listing.image_url %>" class="img-responsive">
+          <%= listing.title %>
+        </a>
+      </div>
+    </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,9 @@
+<h1><%= @shop.name %></h1>
+
+<h3>Listings For This Shop</h3>
+
+<ul>
+  <% Listing.where(shop_id: @shop.id).each do |listing| %>
+    <li><%= link_to listing.title, "/listings/#{listing.id}" %></li>
+  <% end %>
+</ul>
